@@ -55,15 +55,14 @@
         button:hover {
             background-color: #2980b9;
         }
-        #result {
+        #resultBox {
             margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
             font-size: 18px;
             color: var(--text-color);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        .visible {
-            opacity: 1;
         }
         .mode-toggle {
             margin-top: 10px;
@@ -104,7 +103,7 @@
 
         <button class="mode-toggle" onclick="toggleMode()">Mode Gelap/Terang</button>
         
-        <p id="result"></p>
+        <div id="resultBox">Hasil akan muncul di sini</div>
     </div>
 
     <script>
@@ -118,12 +117,11 @@
             const num1 = parseFloat(document.getElementById('num1').value);
             const num2 = parseFloat(document.getElementById('num2').value);
             const operation = document.getElementById('operation').value;
-            const resultElement = document.getElementById('result');
+            const resultBox = document.getElementById('resultBox');
             let hasil;
 
             if (isNaN(num1) || isNaN(num2)) {
-                resultElement.innerText = "Mohon masukkan angka yang valid!";
-                resultElement.classList.add('visible');
+                resultBox.innerText = "Mohon masukkan angka yang valid!";
                 return;
             }
 
@@ -144,25 +142,22 @@
                     hasil = "Operasi tidak valid";
             }
 
-            resultElement.innerText = "Hasil: " + hasil;
-            resultElement.classList.add('visible');
+            resultBox.innerText = "Hasil: " + hasil;
         }
 
         // Konversi Mata Uang
         function konversiMataUang() {
             const usdAmount = parseFloat(document.getElementById('usdAmount').value);
-            const resultElement = document.getElementById('result');
+            const resultBox = document.getElementById('resultBox');
             const exchangeRate = 15000; // 1 USD = 15,000 IDR
 
             if (isNaN(usdAmount)) {
-                resultElement.innerText = "Mohon masukkan jumlah yang valid dalam USD!";
-                resultElement.classList.add('visible');
+                resultBox.innerText = "Mohon masukkan jumlah yang valid dalam USD!";
                 return;
             }
 
             const hasil = usdAmount * exchangeRate;
-            resultElement.innerText = "Hasil: " + hasil + " IDR";
-            resultElement.classList.add('visible');
+            resultBox.innerText = "Hasil: " + hasil + " IDR";
         }
 
         // Reset
@@ -170,9 +165,7 @@
             document.getElementById('num1').value = "";
             document.getElementById('num2').value = "";
             document.getElementById('usdAmount').value = "";
-            const resultElement = document.getElementById('result');
-            resultElement.innerText = "";
-            resultElement.classList.remove('visible');
+            document.getElementById('resultBox').innerText = "Hasil akan muncul di sini";
         }
     </script>
 </body>
