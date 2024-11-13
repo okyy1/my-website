@@ -55,7 +55,7 @@
         button:hover {
             background-color: #2980b9;
         }
-        #resultBox {
+        .result-box {
             margin-top: 20px;
             padding: 15px;
             border: 1px solid #ddd;
@@ -103,7 +103,11 @@
 
         <button class="mode-toggle" onclick="toggleMode()">Mode Gelap/Terang</button>
         
-        <div id="resultBox">Hasil akan muncul di sini</div>
+        <!-- Kotak hasil kalkulator -->
+        <div class="result-box" id="resultBox">Hasil kalkulator akan muncul di sini</div>
+        
+        <!-- Kotak hasil konversi mata uang -->
+        <div class="result-box" id="currencyResultBox">Hasil konversi akan muncul di sini</div>
     </div>
 
     <script>
@@ -112,7 +116,7 @@
             document.body.classList.toggle('dark-mode');
         }
 
-        // Perhitungan
+        // Perhitungan Kalkulator
         function hitung() {
             const num1 = parseFloat(document.getElementById('num1').value);
             const num2 = parseFloat(document.getElementById('num2').value);
@@ -142,22 +146,22 @@
                     hasil = "Operasi tidak valid";
             }
 
-            resultBox.innerText = "Hasil: " + hasil;
+            resultBox.innerText = "Hasil Kalkulator: " + hasil;
         }
 
         // Konversi Mata Uang
         function konversiMataUang() {
             const usdAmount = parseFloat(document.getElementById('usdAmount').value);
-            const resultBox = document.getElementById('resultBox');
+            const currencyResultBox = document.getElementById('currencyResultBox');
             const exchangeRate = 15000; // 1 USD = 15,000 IDR
 
             if (isNaN(usdAmount)) {
-                resultBox.innerText = "Mohon masukkan jumlah yang valid dalam USD!";
+                currencyResultBox.innerText = "Mohon masukkan jumlah yang valid dalam USD!";
                 return;
             }
 
             const hasil = usdAmount * exchangeRate;
-            resultBox.innerText = "Hasil: " + hasil + " IDR";
+            currencyResultBox.innerText = "Hasil Konversi: " + hasil + " IDR";
         }
 
         // Reset
@@ -165,7 +169,8 @@
             document.getElementById('num1').value = "";
             document.getElementById('num2').value = "";
             document.getElementById('usdAmount').value = "";
-            document.getElementById('resultBox').innerText = "Hasil akan muncul di sini";
+            document.getElementById('resultBox').innerText = "Hasil kalkulator akan muncul di sini";
+            document.getElementById('currencyResultBox').innerText = "Hasil konversi akan muncul di sini";
         }
     </script>
 </body>
