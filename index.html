@@ -2,29 +2,46 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Website Sederhana</title>
+    <title>Aplikasi Kalkulator Sederhana</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
-            background-color: #f4f4f4;
+            background-color: #f0f8ff;
         }
-        h1 {
+        input, button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
             color: #333;
-        }
-        p {
-            color: #555;
-        }
-        a {
-            text-decoration: none;
-            color: #3498db;
         }
     </style>
 </head>
 <body>
-    <h1>Selamat Datang di Website Sederhana Saya</h1>
-    <p>Ini adalah website contoh yang di-host di GitHub Pages.</p>
-    <p>Klik <a href="https://github.com/">di sini</a> untuk mengunjungi GitHub.</p>
+    <h1>Aplikasi Kalkulator</h1>
+    <p>Masukkan dua angka dan klik "Hitung"</p>
+    <input type="number" id="num1" placeholder="Angka pertama">
+    <input type="number" id="num2" placeholder="Angka kedua">
+    <br>
+    <button onclick="hitung()">Hitung</button>
+    <p id="result"></p>
+
+    <script>
+        function hitung() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('result').innerText = "Mohon masukkan angka yang valid!";
+            } else {
+                const hasil = num1 + num2;
+                document.getElementById('result').innerText = "Hasil: " + hasil;
+            }
+        }
+    </script>
 </body>
 </html>
